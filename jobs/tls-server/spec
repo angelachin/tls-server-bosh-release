@@ -13,14 +13,14 @@ packages:
 
 properties:
   ca_cert:
-    description: "Trusted CA certificate that was used to sign the silk controller server cert and key."
+    description: "Trusted CA certificate that is used to sign the server cert and key"
 
   server_cert:
-    description: "Client certificate for TLS to access silk controller."
+    description: "Server certificate for TLS"
 
   server_key:
-    description: "Client private key for TLS to access silk controller."
+    description: "Server private key for TLS"
 
   listen_port:
-    description: "port server listens on"
+    description: "Port server listens on"
     default: 7849
