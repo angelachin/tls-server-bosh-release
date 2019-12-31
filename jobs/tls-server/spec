@@ -1,0 +1,26 @@
+---
+name: tls-server
+
+templates:
+  bpm.yml.erb: config/bpm.yml
+  ca.crt.erb: config/certs/ca.crt
+  server.crt.erb: config/certs/server.crt
+  server.key.erb: config/certs/server.key
+  config.json.erb: config/config.json
+
+packages:
+  - tls-server
+
+properties:
+  ca_cert:
+    description: "Trusted CA certificate that was used to sign the silk controller server cert and key."
+
+  server_cert:
+    description: "Client certificate for TLS to access silk controller."
+
+  server_key:
+    description: "Client private key for TLS to access silk controller."
+
+  listen_port:
+    description: "port server listens on"
+    default: 7849

@@ -1,0 +1,85 @@
+---
+addons:
+- include:
+    stemcell:
+    - os: ubuntu-xenial
+  jobs:
+  - name: bpm
+    release: bpm
+  name: bpm
+- jobs:
+  - name: bosh-dns-aliases
+    properties:
+      aliases:
+      - domain: tls-server.service.cf.internal
+        targets:
+        - deployment: tls-server
+          domain: bosh
+          instance_group: tls-server
+          network: default
+          query: '*'
+    release: bosh-dns-aliases
+  name: bosh-dns-aliases
+
+name: tls-server
+
+releases:
+- name: tls-server-bosh
+  version: latest
+- name: bpm
+  sha1: b00deb5b4d20ffcf3aace4111d6584088123e469
+  stemcell:
+    os: ubuntu-xenial
+    version: "621.5"
+  url: https://storage.googleapis.com/cf-deployment-compiled-releases/bpm-1.1.6-ubuntu-xenial-621.5-20191206-030639-579539473.tgz
+  version: 1.1.6
+- name: bosh-dns-aliases
+  sha1: a53e437bc4dd8adb8bfeff7ab3c41bfb3c4babaa
+  stemcell:
+    os: ubuntu-xenial
+    version: "621.5"
+  url: https://storage.googleapis.com/cf-deployment-compiled-releases/bosh-dns-aliases-0.0.3-ubuntu-xenial-621.5-20191031-225703-44349734.tgz
+  version: 0.0.3
+
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: "621.26"
+
+
+update:
+  canaries: 2
+  max_in_flight: 1
+  canary_watch_time: 5000-60000
+  update_watch_time: 5000-60000
+
+instance_groups:
+- name: tls-server
+  azs:
+  - z1
+  instances: 1
+  jobs:
+  - name: tls-server
+    release: tls-server-bosh
+    properties:
+      ca_cert: ((tls_server_ca.ca))
+      server_cert: ((tls_server.certificate))
+      server_key: ((tls_server.private_key))
+  vm_type: small
+  stemcell: default
+  persistent_disk_type: 5GB
+  networks:
+  - name: default
+
+variables:
+- name: tls_server_ca
+  options:
+    common_name: tls-server.service.cf.internal
+    is_ca: true
+  type: certificate
+
+- name: tls_server
+  options:
+    ca: tls_server_ca
+    common_name: tls-server.service.cf.internal
+  type: certificate

@@ -1,0 +1,12 @@
+<%=
+  require 'json'
+
+  toRender = {
+    'ca_cert_file' => '/var/vcap/jobs/tls-server/config/certs/ca.crt',
+    'server_cert_file' => '/var/vcap/jobs/tls-server/config/certs/server.crt',
+    'server_key_file' => '/var/vcap/jobs/tls-server/config/certs/server.key',
+    'listen_port' => p('listen_port')
+  }
+
+  JSON.pretty_generate(toRender)
+%>

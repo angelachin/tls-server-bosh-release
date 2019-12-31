@@ -1,0 +1,8 @@
+---
+name: tls-server
+
+dependencies:
+  - golang-1.13-linux
+
+files:
+  - tls-server/*.go # gosub

@@ -1,0 +1,5 @@
+name: tls-server-bosh
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp/tls-server-blobs

@@ -1,0 +1,5 @@
+check process tls-server
+  with pidfile /var/vcap/sys/run/bpm/tls-server/tls-server.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start tls-server"
+  stop program "/var/vcap/jobs/bpm/bin/bpm stop tls-server"
+  group vcap
