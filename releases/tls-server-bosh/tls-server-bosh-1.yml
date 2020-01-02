@@ -1,0 +1,23 @@
+name: tls-server-bosh
+version: "1"
+commit_hash: b8b84b3
+uncommitted_changes: false
+jobs:
+- name: tls-server
+  version: ca3bf6f29659bb3d46756c0a8e6603eff96dc35ac6ca930a2e61f765ab9274d2
+  fingerprint: ca3bf6f29659bb3d46756c0a8e6603eff96dc35ac6ca930a2e61f765ab9274d2
+  sha1: sha256:878f202c6c4e4f190192bcbda74b8bc42836edf2f4c55d9f951f5573425506bc
+  packages:
+  - tls-server
+packages:
+- name: golang-1.13-linux
+  version: b6590a82af5f75919501780bf4270922cd9f1e77ad3b21fbcadc2b5b4662482a
+  fingerprint: b6590a82af5f75919501780bf4270922cd9f1e77ad3b21fbcadc2b5b4662482a
+  sha1: sha256:b6a1774456c03549c1f90691cee765fa0e61777e3eff9ba9fc52e0acf7e78bd3
+  dependencies: []
+- name: tls-server
+  version: 1bac2c4695658c2678909d68025d9cdb7df6307483ab2bacc1c2ac27fbcd9f97
+  fingerprint: 1bac2c4695658c2678909d68025d9cdb7df6307483ab2bacc1c2ac27fbcd9f97
+  sha1: sha256:cefc81ddab50f13c665daa9c52c7a7f7b9560bbd63908d8553a7e866fb414908
+  dependencies:
+  - golang-1.13-linux
