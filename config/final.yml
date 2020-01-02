@@ -1,5 +1,6 @@
 name: tls-server-bosh
 blobstore:
-  provider: local
+  provider: gcs
   options:
-    blobstore_path: /tmp/tls-server-blobs
+    bucket_name: angela-cf
+
